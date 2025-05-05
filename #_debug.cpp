@@ -40,8 +40,8 @@ void cdpwn(char board[3][3]) {
     static bool seeded = false;
     if (!seeded) { srand(time(0)); seeded = true; }
 
-    auto try_win = [&](char target) { // Í¨ÓÃ¼ì²éº¯Êý
-        // ¼ì²éÐÐºÍÁÐ
+    auto try_win = [&](char target) { // é€šç”¨æ£€æŸ¥å‡½æ•°
+        // æ£€æŸ¥è¡Œå’Œåˆ—
         for(int i = 0; i < 3; i++) {
             int row_cnt = 0, col_cnt = 0, row_empty = -1, col_empty = -1;
             for(int j = 0; j < 3; j++) {
@@ -55,7 +55,7 @@ void cdpwn(char board[3][3]) {
             if(col_cnt == 2 && col_empty != -1) { board[col_empty][i] = 'C'; return true; }
         }
 
-        // ¼ì²é¶Ô½ÇÏß
+        // æ£€æŸ¥å¯¹è§’çº¿
         int diag1_cnt = 0, diag2_cnt = 0, diag1_empty = -1, diag2_empty = -1;
         for(int i = 0; i < 3; i++) {
             if(board[i][i] == target) diag1_cnt++;
@@ -76,10 +76,10 @@ void cdpwn(char board[3][3]) {
         return false;
     };
 
-    if(try_win('C')) return; // ³¢ÊÔ×Ô¼ºÊ¤Àû
-    if(try_win('P')) return; // ×èÖ¹Íæ¼ÒÊ¤Àû
+    if(try_win('C')) return; // å°è¯•è‡ªå·±èƒœåˆ©
+    if(try_win('P')) return; // é˜»æ­¢çŽ©å®¶èƒœåˆ©
 
-    // Ëæ»úÑ¡Ôñ¿ÕÎ»
+    // éšæœºé€‰æ‹©ç©ºä½
     int empty[9][2], count = 0;
     for(int i = 0; i < 3; i++)
         for(int j = 0; j < 3; j++)
@@ -108,7 +108,7 @@ void outS(char a[3][3]){
 		}
 		cout<<endl;
 	}
-	cout<<"'P':Íæ¼Òplayer  'C':µçÄÔcomputer\n";
+	cout<<"'P':çŽ©å®¶player  'C':ç”µè„‘computer\n";
 	return;
 }
 void exitPrint(void){
@@ -117,7 +117,7 @@ void exitPrint(void){
 	cout<<"Process exited with return value 0\n";
 	cout<<"3s later continue . . .";
 	Sleep(3000);
-	COLOR_PRINT("\nTSY PRESENTS\nÖÆ×÷£ºCN-tsy",BLUE);
+	COLOR_PRINT("\nTSY PRESENTS\nåˆ¶ä½œï¼šCN-tsy",BLUE);
 	Sleep(1600);
 	exit(0); 
 }
@@ -127,44 +127,44 @@ void noVL(char a[3][3]) {
         a[0][2] != '+' && a[1][2] != '+' && a[2][2] != '+') 
 	{
         Sleep(2000);
-        cout << "Æ½¾Ö£¡£¡£¡";
-        exitPrint(); // µ÷ÓÃºóÍË³ö³ÌÐò
+        cout << "å¹³å±€ï¼ï¼ï¼";
+        exitPrint(); // è°ƒç”¨åŽé€€å‡ºç¨‹åº
     }
 }
 void VL(char a[3][3]) {
-    // ¼ì²éÐÐÊ¤Àû£¨0-basedË÷Òý£©
+    // æ£€æŸ¥è¡Œèƒœåˆ©ï¼ˆ0-basedç´¢å¼•ï¼‰
     for(int row=0; row<3; ++row) {
         if(a[row][0]!='+' && a[row][0]==a[row][1] && a[row][1]==a[row][2]) {
             system("cls");
             outS(a);
-            printf("%s\n%c" ,(a[row][0]=='C') ? "¼ÆËã»úÊ¤" : "you're the winner!!!",7);
+            printf("%s\n%c" ,(a[row][0]=='C') ? "è®¡ç®—æœºèƒœ" : "you're the winner!!!",7);
             exitPrint();
         }
     }
 
-    // ¼ì²éÁÐÊ¤Àû£¨0-basedË÷Òý£©
+    // æ£€æŸ¥åˆ—èƒœåˆ©ï¼ˆ0-basedç´¢å¼•ï¼‰
     for(int col=0; col<3; ++col) {
         if(a[0][col]!='+' && a[0][col]==a[1][col] && a[1][col]==a[2][col]) {
             system("cls");
             outS(a);
-            printf("%s\n%c", (a[0][col]=='C') ? "¼ÆËã»úÊ¤" : "you're the winner!!!",7);
+            printf("%s\n%c", (a[0][col]=='C') ? "è®¡ç®—æœºèƒœ" : "you're the winner!!!",7);
             exitPrint();
         }
     }
 
-    // Ö÷¶Ô½ÇÏß¼ì²é£¨0,0¡ú2,2£©
+    // ä¸»å¯¹è§’çº¿æ£€æŸ¥ï¼ˆ0,0â†’2,2ï¼‰
     if(a[0][0]!='+' && a[0][0]==a[1][1] && a[1][1]==a[2][2]) {
         system("cls");
         outS(a);
-        printf("%s\n%c", (a[0][0]=='C') ? "¼ÆËã»úÊ¤" : "you're the winner!!!",7);
+        printf("%s\n%c", (a[0][0]=='C') ? "è®¡ç®—æœºèƒœ" : "you're the winner!!!",7);
         exitPrint();
     }
 
-    // ¸±¶Ô½ÇÏß¼ì²é£¨0,2¡ú2,0£©
+    // å‰¯å¯¹è§’çº¿æ£€æŸ¥ï¼ˆ0,2â†’2,0ï¼‰
     if(a[0][2]!='+' && a[0][2]==a[1][1] && a[1][1]==a[2][0]) {
         system("cls");
         outS(a);
-        printf("%s\n%c", (a[0][2]=='C') ? "¼ÆËã»úÊ¤" : "you're the winner!!!",7);
+        printf("%s\n%c", (a[0][2]=='C') ? "è®¡ç®—æœºèƒœ" : "you're the winner!!!",7);
         exitPrint();
     }
 }
@@ -175,12 +175,12 @@ void check(char a[3][3]){
 void HideProgram(void){
 	if(cnt2==5){
 		for(int i=1;i<=51;i++){
-			COLOR_PRINT("\nÒÑÕ¼ÓÃ£¬ÖØÊä",RED);
+			COLOR_PRINT("\nå·²å ç”¨ï¼Œé‡è¾“",RED);
 			Sleep(100);
 		}
 		Sleep(1000*3);
 		printf("\n%c",7);
-		system("ÒÑÕ¼ÓÃ£¬ÖØÊä");
+		system("å·²å ç”¨ï¼Œé‡è¾“");
 		cout<<"[Warning] unknown conversion type character 'l' in format [-Wformat=]";
 		Sleep(3000*2); 
 		COLOR_PRINT("\n--------------------------------\nProcess exited with return value 3221225477\nPress any key to continue . . .",YELLOW);
@@ -194,30 +194,14 @@ void HideProgram(void){
 			} 
 			i++;
 		}
-		if(a[1]=='0'&&a[2]=='7'&&a[3]=='5'&&a[4]=='1'&&a[5]=='A'){
-			system("cls");
-			Sleep(1500);
-			slowprint("ÄãºÃ£¡\n",90);
-			Sleep(1000);
-			slowprint("\nºÜ±§Ç¸¸Õ²ÅÏÅµ½Äã\n",50);
-			Sleep(2000);
-			slowprint("\nÕâ¶Î´úÂëÊÇÎÒËÍ¸øÄãµÄÀñÎï:)\n",20);
-			Sleep(2000);
-			slowprint("\nÄÇ¼ÍÂ¼Æ¬»¹²»ÖªµÀÊ²Ã´Ê±ºòÅªÍê\n",15);
-			Sleep(1900);
-			slowprint("\nÏÈÄÃÕâ¸öÏÈµæ×Å°É£¨£¿£©\n",50);
-			Sleep(1500);
-			slowprint("\n(Í»È»ÏëÆð)ºÜ¸ßÐËÄãÄÜ·¢ÏÖÕâÀïÄØ\n",30);
-			Sleep(1900);
-			slowprint("\n×îºó...\n",90);
-			Sleep(2300);
-			COLOR_PRINT("\n×£ÎÒÃÇÓÑÒê³¤´æ!\n         ¡ª¡ªTSY\n\n",BLUE);
-			system("pause");
-			exitPrint(); 
-		}
+		//if(a[1]==''&&a[2]==''&&a[3]==''&&a[4]==''&&a[5]==''){
+			//OUCH!!!YOU HAVEN'T PERMISSIONS TO VIEW
+			//IN FACT,CN-tsy don't want you to do it.
+			//BECAUSE it isn't prepare for you.
+		//}
 		if(a[1]=='1'&&a[2]=='7'&&a[3]=='2'&&a[4]=='1'&&a[5]=='A'){
 			system("cls");Sleep(1500);
-			slowprint("µ÷ÊÔ...£¨100ms£©\n",100);Sleep(1000);
+			slowprint("è°ƒè¯•...ï¼ˆ100msï¼‰\n",100);Sleep(1000);
 			cout<<"(system(\"pause\");)";system("pause");
 			exitPrint();
 		}
@@ -226,7 +210,7 @@ void HideProgram(void){
 }
 }
 
-////////////////º¯Êý¡ü¡ýusing//////////////////////////////////////////// 
+////////////////å‡½æ•°â†‘â†“using//////////////////////////////////////////// 
 
 using TSY_PRESENTS::noVL;
 using TSY_PRESENTS::outS;
@@ -234,7 +218,7 @@ using TSY_PRESENTS::VL;
 using TSY_PRESENTS::cdpwn;
 using TSY_PRESENTS::check;
 
-////////////////using¡ü¡ýmain////////////////////////////////////////////
+////////////////usingâ†‘â†“main////////////////////////////////////////////
 
 int main(){
 	int _1,cnt=0;
@@ -248,9 +232,9 @@ int main(){
 	char buffer[80];
 	strftime(buffer,80,"%Y-%m-%d %H:%M:%S",local_tm);
 	cout<<buffer<<endl;
-	COLOR_PRINT("TSY PRESENTS\nCN-tsy³ÊÏÖ\n",BLUE);
+	COLOR_PRINT("TSY PRESENTS\nCN-tsyå‘ˆçŽ°\n",BLUE);
 	
-	printf("ÊäÈë1×Ô¼ºÏÈ£¬ÊäÈë0µçÄÔÏÈ£º");
+	printf("è¾“å…¥1è‡ªå·±å…ˆï¼Œè¾“å…¥0ç”µè„‘å…ˆï¼š");
 	scanf("%d",&a_); 
 	TSY_PRESENTS::SS(a);
 	Sleep(500);
@@ -260,7 +244,7 @@ int main(){
 	if(a_){
 	} else {
 		cnt++;
-		printf("µçÄÔÏÈÏÂ(ÊÔÊÔÁ¬ÐøÎå´Î´¥·¢¡°ÒÑÕ¼ÓÃ£¬ÖØÊä¡±Å¶~)");
+		printf("ç”µè„‘å…ˆä¸‹(è¯•è¯•è¿žç»­äº”æ¬¡è§¦å‘â€œå·²å ç”¨ï¼Œé‡è¾“â€å“¦~)");
 		Sleep(1900); 
 		cdpwn(a);
 		system("cls");
@@ -270,13 +254,13 @@ int main(){
 	while(1){
 		check(a);
 		while(1){
-			printf("\nÊäÈëÏÂ×Ó×ø±ê,1¸ö¿Õ¸ñ·Ö¿ª(Êý×Ö ×ÖÄ¸)");
+			printf("\nè¾“å…¥ä¸‹å­åæ ‡,1ä¸ªç©ºæ ¼åˆ†å¼€(æ•°å­— å­—æ¯)");
 			scanf("%d %c",&_1,&_2);
 			if(a[_1][_2-'a']=='+'){
 				a[_1][_2-'a']='P';
 				break;
 			}else{
-				printf("ÒÑÕ¼ÓÃ£¬ÖØÊä"); 
+				printf("å·²å ç”¨ï¼Œé‡è¾“"); 
 				cnt2++;
 				TSY_PRESENTS::HideProgram();
 			}

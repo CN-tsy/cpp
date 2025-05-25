@@ -1,4 +1,5 @@
 //#include<bits/stdc++.h>
+//#include<windos.h>
 
 void slowprint(char a[],int b){
     int s=strlen(a);
